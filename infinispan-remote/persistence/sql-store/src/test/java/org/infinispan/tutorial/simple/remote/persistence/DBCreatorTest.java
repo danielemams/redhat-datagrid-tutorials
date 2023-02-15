@@ -1,7 +1,5 @@
 package org.infinispan.tutorial.simple.remote.persistence;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -15,19 +13,9 @@ public class DBCreatorTest {
 
    DBCreator dbCreator = new DBCreator();
 
-   @BeforeAll
-   public void startTest() {
-      dbCreator.startDBServer("9124");
-   }
-
-   @AfterAll
-   public void stopTest() {
-      dbCreator.stopDBServer();
-   }
-
    @Test
    public void createAndPopulateDB() {
-      dbCreator.startDBServer();
+      dbCreator.setUrl();
       dbCreator.createAndPopulate();
 
       List<Author> authors = dbCreator.readAuthors();

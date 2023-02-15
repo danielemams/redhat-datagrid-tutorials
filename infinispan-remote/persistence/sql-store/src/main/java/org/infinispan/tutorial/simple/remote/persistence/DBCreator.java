@@ -13,32 +13,19 @@ import java.util.List;
 
 public class DBCreator {
 
-   static final String JDBC_DRIVER = "org.h2.Driver";
-   static final String USER = "infinispan";
-   static final String PASS = "secret";
+   static final String JDBC_DRIVER = "org.postgresql.Driver";
+   static final String USER = "postgres";
+   static final String PASS = "postgres";
    private String DB_URL;
-   private org.h2.tools.Server server;
 
-   public void startDBServer() {
-      startDBServer("9123");
+   public void setUrl() {
+      setUrl("5432");
    }
 
-   public void startDBServer(String port) {
+   public void setUrl(String port) {
       // Windows users may need to change the URL
-      DB_URL = String.format("jdbc:h2:tcp://localhost:%s/~/library;", port);
-      try {
-         server = org.h2.tools.Server.createTcpServer("-tcpPort", port, "-tcpAllowOthers", "-ifNotExists").start();
-      } catch (SQLException throwable) {
-         throwable.printStackTrace();
-      }
+      DB_URL = String.format("jdbc:postgresql://localhost:%s/library", port);
    }
-
-   public void stopDBServer() {
-      if (server != null) {
-         server.stop();
-      }
-   }
-
 
    public void createAndPopulate() {
       Connection conn = null;

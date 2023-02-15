@@ -14,7 +14,7 @@ public class SQLStoreLibraryMain {
 
    public static void main(String[] args) throws Exception {
       DBCreator dbCreator = new DBCreator();
-      dbCreator.startDBServer("9123");
+      dbCreator.setUrl();
       dbCreator.createAndPopulate();
 
       ConfigurationBuilder configurationBuilder = Infinispan.connectionConfig();
@@ -47,6 +47,5 @@ public class SQLStoreLibraryMain {
       cacheManager.administration().removeCache(BOOKS_CACHE);
       schemaUploader.unregisterSchema();
       cacheManager.stop();
-      dbCreator.stopDBServer();
    }
 }

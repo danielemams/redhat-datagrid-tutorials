@@ -1,14 +1,14 @@
 <distributed-cache>
     <encoding media-type="application/x-protostream"/>
     <persistence>
-        <query-jdbc-store dialect="H2"
+        <query-jdbc-store dialect="POSTGRES"
                           shared="false"
                           read-only="true"
                           key-columns="id">
-            <connection-pool connection-url="jdbc:h2:tcp://localhost:9123/~/library;"
-                             username="infinispan"
-                             password="secret"
-                             driver="org.h2.Driver"/>
+            <connection-pool connection-url="jdbc:postgresql://localhost:5432/library"
+                             username="postgres"
+                             password="postgres"
+                             driver="org.postgresql.Driver"/>
             <schema message-name="Book" package="library"/>
             <queries
                     select-single="SELECT books.id, books.isbn, title, authors.name,

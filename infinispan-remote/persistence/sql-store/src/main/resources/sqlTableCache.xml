@@ -4,12 +4,12 @@
         <table-jdbc-store
                 read-only="true"
                 shared="false"
-                dialect="H2"
+                dialect="POSTGRES"
                 table-name="AUTHORS">
-            <connection-pool connection-url="jdbc:h2:tcp://localhost:9123/~/library;DB_CLOSE_DELAY=-1"
-                             username="infinispan"
-                             password="secret"
-                             driver="org.h2.Driver"/>
+            <connection-pool connection-url="jdbc:postgresql://localhost:5432/library"
+                             username="postgres"
+                             password="postgres"
+                             driver="org.postgresql.Driver"/>
             <schema message-name="Author" package="library" embedded-key="true"/>
         </table-jdbc-store>
     </persistence>
